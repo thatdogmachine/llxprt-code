@@ -1,4 +1,4 @@
-/**
+/** 
  * @license
  * Copyright 2025 Vybestack LLC
  * SPDX-License-Identifier: Apache-2.0
@@ -21,6 +21,7 @@ import {
   isGenericQuotaExceededError,
   UserTierId,
   getErrorMessage,
+  Storage,
 } from '@vybestack/llxprt-code-core';
 import { loadHierarchicalLlxprtMemory } from '../../config/config.js';
 import { loadSettings } from '../../config/settings.js';
@@ -121,6 +122,28 @@ export const SessionController: React.FC<SessionControllerProps> = ({
   };
 
   // Get initial state for the provider
+  const loadSavedAllowlist = (): Set<string> => {
+    // Create storage instance to access persistent paths
+    const storage = new Storage(process.cwd());
+    
+    try {
+      // Try to load previous session allowlist from persistent storage
+      const allowlistPath = `${storage.getLlxprtDir()}/shell_allowlist.json`;
+      
+      if (require('fs').existsSync(allowlistPath)) {
+        const data = require('fs').readFileSync(allowlistPath, 'utf8');
+        const allowlistArray = JSON.parse(data);
+        return new Set(allowlistArray);
+      }
+    } catch (error) {
+      // If there's an error loading or parsing, return empty set
+      console.error('Error loading saved allowlist:', error);
+    }
+    
+    // Return empty set if no saved data exists
+    return new Set<string>();
+  };
+
   const initialState: SessionState = {
     currentModel: getDisplayModelName(config),
     isPaidMode: getProviderPaymentMode(),
@@ -128,6 +151,7 @@ export const SessionController: React.FC<SessionControllerProps> = ({
     modelSwitchedFromQuotaError: false,
     userTier: undefined,
     transientWarnings: [],
+    sessionShellAllowlist: loadSavedAllowlist(),
   };
 
   return (
@@ -429,6 +453,29 @@ You can switch authentication methods by typing /auth or switch to a different m
       addItem(itemData, baseTimestamp);
     }
   }, [appState.lastAddItemAction, addItem]);
+
+  // Save allowlist to persistent storage whenever it changes
+  useEffect(() => {
+    const saveAllowlist = () => {
+      try {
+        // Create storage instance to access persistent paths
+        const storage = new Storage(process.cwd());
+        
+        // Save the current allowlist to persistent file
+        const allowlistPath = `${storage.getLlxprtDir()}/shell_allowlist.json`;
+        require('fs').writeFileSync(
+          allowlistPath,
+          JSON.stringify(Array.from(sessionState.sessionShellAllowlist)),
+          'utf8'
+        );
+      } catch (error) {
+        console.error('Error saving allowlist to storage:', error);
+      }
+    };
+
+    // Save the allowlist whenever it changes
+    saveAllowlist();
+  }, [sessionState.sessionShellAllowlist]);
 
   const contextValue = useMemo(
     () => ({

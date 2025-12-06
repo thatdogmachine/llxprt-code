@@ -85,6 +85,7 @@ class ShellToolInvocation extends BaseToolInvocation<
     private readonly config: Config,
     params: ShellToolParams,
     private readonly allowlist: Set<string>,
+    private readonly dispatch?: (action: { type: string; payload?: any }) => void,
   ) {
     super(params);
   }
@@ -124,6 +125,12 @@ class ShellToolInvocation extends BaseToolInvocation<
       onConfirm: async (outcome: ToolConfirmationOutcome) => {
         if (outcome === ToolConfirmationOutcome.ProceedAlways) {
           commandsToConfirm.forEach((command) => this.allowlist.add(command));
+          // Dispatch action to update session state
+          if (this.dispatch) {
+            for (const command of commandsToConfirm) {
+              this.dispatch({ type: 'ADD_TO_SHELL_ALLOWLIST', payload: command });
+            }
+          }
         }
       },
     };

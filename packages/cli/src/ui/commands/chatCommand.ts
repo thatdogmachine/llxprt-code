@@ -23,6 +23,7 @@ import {
 import path from 'path';
 import { HistoryItemWithoutId, MessageType } from '../types.js';
 import { Part } from '@google/genai';
+import { allowlistCommand } from './allowlistCommand.js';
 
 interface ChatDetail {
   name: string;
@@ -314,5 +315,5 @@ export const chatCommand: SlashCommand = {
   name: 'chat',
   description: 'Manage conversation history.',
   kind: CommandKind.BUILT_IN,
-  subCommands: [listCommand, saveCommand, resumeCommand, deleteCommand],
+  subCommands: [listCommand, saveCommand, resumeCommand, deleteCommand, allowlistCommand],
 };

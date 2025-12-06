@@ -1,4 +1,4 @@
-/**
+/** 
  * @license
  * Copyright 2025 Vybestack LLC
  * SPDX-License-Identifier: Apache-2.0
@@ -46,6 +46,7 @@ import { terminalSetupCommand } from '../ui/commands/terminalSetupCommand.js';
 import { debugCommand } from '../ui/commands/debugCommands.js';
 import { logoutCommand } from '../ui/commands/logoutCommand.js';
 import { statusCommand } from '../ui/commands/statusCommand.js';
+import { allowlistCommand } from '../ui/commands/allowlistCommand.js';
 
 /**
  * Loads the core, hard-coded slash commands that are an integral part
@@ -102,6 +103,7 @@ export class BuiltinCommandLoader implements ICommandLoader {
       debugCommand,
       logoutCommand,
       statusCommand,
+      allowlistCommand,
     ];
 
     return allDefinitions.filter((cmd): cmd is SlashCommand => cmd !== null);

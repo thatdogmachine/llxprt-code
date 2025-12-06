@@ -14,6 +14,7 @@ export interface SessionState {
   modelSwitchedFromQuotaError: boolean;
   userTier: UserTierId | undefined;
   transientWarnings: string[];
+  sessionShellAllowlist: Set<string>;
 }
 
 // Action types
@@ -24,7 +25,9 @@ export type SessionAction =
   | { type: 'SET_MODEL_SWITCHED_FROM_QUOTA_ERROR'; payload: boolean }
   | { type: 'SET_USER_TIER'; payload: UserTierId | undefined }
   | { type: 'SET_TRANSIENT_WARNINGS'; payload: string[] }
-  | { type: 'CLEAR_TRANSIENT_WARNINGS' };
+  | { type: 'CLEAR_TRANSIENT_WARNINGS' }
+  | { type: 'ADD_TO_SHELL_ALLOWLIST'; payload: string }
+  | { type: 'CLEAR_SHELL_ALLOWLIST' };
 
 // Session reducer with exhaustive switch
 export const sessionReducer = (
@@ -46,6 +49,13 @@ export const sessionReducer = (
       return { ...state, transientWarnings: action.payload };
     case 'CLEAR_TRANSIENT_WARNINGS':
       return { ...state, transientWarnings: [] };
+    case 'ADD_TO_SHELL_ALLOWLIST':
+      // Create a new Set with the existing allowlist + the new command
+      const newAllowlist = new Set(state.sessionShellAllowlist);
+      newAllowlist.add(action.payload);
+      return { ...state, sessionShellAllowlist: newAllowlist };
+    case 'CLEAR_SHELL_ALLOWLIST':
+      return { ...state, sessionShellAllowlist: new Set() };
     default: {
       // Exhaustive check - this ensures all action types are handled
       const _exhaustiveCheck: never = action;

@@ -21,8 +21,6 @@
           llxpert-script = pkgs.writeShellScriptBin "llxpert-local" ''
             #!/bin/sh
             node /Users/$(whoami)/repos/llxprt-code/packages/cli \
-              --include-directories ~/repos/mac-setup \
-              --include-directories ~/repos/mac-setup/llxpert-experiment \
               --include-directories ~/repos/llxprt-code \
               "$@"
           '';

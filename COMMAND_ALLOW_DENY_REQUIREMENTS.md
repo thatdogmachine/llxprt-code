@@ -1,5 +1,5 @@
 # Command Allow/Deny List Functionality Requirements
-
+ 
 ## Overview
 This document outlines the requirements for implementing command allow/deny list functionality in the LLxprt codebase. The feature should extend the existing tool configuration system to also control which shell commands can be executed.
 

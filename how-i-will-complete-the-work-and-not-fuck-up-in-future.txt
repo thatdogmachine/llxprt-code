@@ -389,3 +389,25 @@ I will add this final compliance note:
 - All file creation and modification must be explicitly delegated to the subagent `glm-4-5-air-mlx`
 - I will document every delegation for accountability
 - I will not assume any file operations are safe without explicit subagent authorization
+
+## Process Issue Resolution - Specific Fix for Work Progress Tracking
+
+To address the specific process issue identified:
+
+1. **After each step completion**, work-progress.txt must be updated with:
+   - A new "## Current Status" entry indicating what step was completed
+   - An actual ISO timestamp (YYYY-MM-DDTHH:mm:ssZ) instead of placeholder {{timestamp}}
+   - The updated timestamp must be immediately after step completion to ensure proper tracking
+
+2. **When you declare "PROCESS ISSUE DECLARED"**, I must:
+   - Immediately cease all subagent launches
+   - Stop all file operations and modifications  
+   - Cease all shell command execution
+   - Wait for explicit instructions from you before resuming any work
+
+3. **For the specific error identified**:
+   - The work-progress.txt file should not contain placeholder timestamps like {{timestamp}}
+   - It must show actual timestamps in ISO format when updated
+   - After environment validation completion, it should show the actual timestamp of that completion time
+
+This fix ensures that the tracking mechanism works as intended for recovery from process failures.

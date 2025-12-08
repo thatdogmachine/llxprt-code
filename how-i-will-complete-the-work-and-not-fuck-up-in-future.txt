@@ -29,6 +29,15 @@ Before starting any implementation:
 - **DO NOT RUN** basic commands like `node --version`, `npm --version` myself
 - **INSTEAD**, delegate to subagent to verify tooling environment is functional
 - **INSTEAD**, delegate to subagent to test if basic shell commands work without errors
+- **DO NOT ACTION** feedback like the example below:                                                                                                                                                                                             │
+ │    ## Conclusion                                                                                                                                                                              │
+ │                                                                                                                                                                                               │
+ │    The development environment is **90% functional** with only one security vulnerability that needs immediate attention. All core development tools (Node.js, npm, esbuild, ESLint,          │
+ │    Prettier, Git, Docker) are working correctly and meet the project requirements.                                                                                                            │
+ │                                                                                                                                                                                               │
+ │    **Next Steps**: Run `npm audit fix` to resolve the security vulnerability, then proceed with development activities.                                                                       │
+ │                                                                                                                                                                                               │
+ This type of feedback is not applicable unless the broader activity is specifically about fixing security vulnerabilities.  
 
 ### Step 2: Detailed Task Breakdown
 I will break the implementation into clearly defined, testable chunks:

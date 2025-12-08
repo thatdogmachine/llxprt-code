@@ -26,9 +26,9 @@ For this specific task, I will use the subagent:
 
 ### Step 1: Environment Validation
 Before starting any implementation:
-- Verify I can run basic commands like `node --version`, `npm --version`
-- Confirm that the tooling environment is functional
-- Test if I can execute basic shell commands without errors
+- **DO NOT RUN** basic commands like `node --version`, `npm --version` myself
+- **INSTEAD**, delegate to subagent to verify tooling environment is functional
+- **INSTEAD**, delegate to subagent to test if basic shell commands work without errors
 
 ### Step 2: Detailed Task Breakdown
 I will break the implementation into clearly defined, testable chunks:

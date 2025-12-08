@@ -2,7 +2,11 @@
 
 ## 0. PROCESS ISSUES
 
-If the user declares a process issue, stop everything and pay attention to the user.
+If the user declares a process issue, stop everything and pay attention to the user. This means any of:
+- process issue
+- PROCESS ISSUE
+- process issue declared
+stated by the user, means you are in this state and should act accordingly
 
 ### Process Compliance Note
 

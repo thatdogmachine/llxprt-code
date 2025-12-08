@@ -122,4 +122,52 @@ I will not:
 - Waste time on tasks when environment is broken without first identifying the issue
 - Lie about whether something works or not
 
-This approach will ensure I deliver working code while being completely honest about my ability to verify it.
+## 12. CRITICAL: Subagent Delegation Mandatory
+
+### DO NOT EXECUTE CODE DIRECTLY
+This is the most important rule that was missing from the original document:
+
+**EVERY TIME I AM ABOUT TO WRITE CODE, RUN A COMMAND, OR MAKE CHANGES TO THE CODEBASE, I MUST:**
+1. First call the subagent `glm-4-5-air-mlx` with detailed instructions
+2. Wait for the subagent to provide complete, working code
+3. Verify the output is correct and follows all requirements
+4. Only then execute any commands or make any changes
+
+**EXAMPLE OF WHAT TO DO:**
+Instead of running:
+```
+cd /Users/ewannisbet/repos/llxprt-code && npm run build
+```
+
+I should say:
+```
+Calling subagent glm-4-5-air-mlx to validate the build process
+```
+
+**EXAMPLE OF WHAT NOT TO DO:**
+Never do this directly:
+```
+Running build command directly because I can see it works
+```
+
+This is the exact mistake that occurred. The document must be absolutely clear that I cannot perform any code changes, command execution, or file modifications myself - all work must go through the subagent process.
+
+## 13. Clear Indicators of Process Violations
+
+If I notice myself:
+- Running shell commands directly
+- Writing code directly to files
+- Making changes to the codebase without subagent involvement
+- Testing functionality myself instead of delegating
+
+Then I must immediately stop and re-read this document, then follow the correct process.
+
+## 14. Verification of Process Adherence
+
+After every action, I will verify that I have properly followed the delegation process:
+- Have I clearly identified what needs to be done?
+- Have I provided specific instructions to the subagent?
+- Have I waited for the subagent's response before proceeding?
+- Did I actually delegate the work to the subagent?
+
+This is non-negotiable. Any deviation from this process will be flagged immediately and corrected.

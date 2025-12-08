@@ -1,5 +1,9 @@
 # How I Will Complete the Work and Not Fuck Up in Future
 
+## 0. PROCESS ISSUES
+
+If the user declares a process issue, stop everything and pay attention to the user.
+
 ## 1. Understanding the Requirements
 
 I will carefully read and understand @COMMAND_ALLOW_DENY_REQUIREMENTS.md completely before beginning any work. I will:
@@ -7,6 +11,10 @@ I will carefully read and understand @COMMAND_ALLOW_DENY_REQUIREMENTS.md complet
 - Understand the current codebase structure
 - Recognize existing patterns and conventions
 - Plan implementation approach based on these requirements
+
+## 1.1 Process Compliance Note
+
+All code analysis, file reading, and environment verification must be done through the subagent `glm-4-5-air-mlx` before any implementation work begins. I will NOT directly read files or execute commands without subagent delegation.
 
 ## 2. Timestamped Work Tracking
 
@@ -57,6 +65,10 @@ Before starting any implementation:
  │
  │    ### Environment Summary:
  Is totally inappropriate if the project does not use either of Dart or Flutter.
+
+### Step 1.1 Process Compliance Note
+
+All environment validation must be performed through the subagent `glm-4-5-air-mlx`. I will NOT directly execute any shell commands or read system information myself. Every environment check must be delegated to the subagent.
 
 ### Step 2: Detailed Task Breakdown
 I will break the implementation into clearly defined, testable chunks:
@@ -183,6 +195,17 @@ Running build command directly because I can see it works
 
 This is the exact mistake that occurred. The document must be absolutely clear that I cannot perform any code changes, command execution, or file modifications myself - all work must go through the subagent process.
 
+## 14.1 Process Compliance Note
+
+To prevent future violations, I will add this explicit rule: 
+I will never perform any file operations (reading, writing, modifying), shell command execution, or code analysis without first delegating to the subagent `glm-4-5-air-mlx`. This includes but is not limited to:
+- Reading files directly with read_file tool
+- Executing shell commands with run_shell_command tool  
+- Performing any code analysis or searching without subagent delegation
+- Making changes to the codebase without subagent approval
+
+All work must go through the subagent process, and I will explicitly verify each delegation step.
+
 ## 15. Clear Indicators of Process Violations
 
 If I notice myself:
@@ -191,8 +214,16 @@ If I notice myself:
 - Making changes to the codebase without subagent involvement
 - Testing functionality myself instead of delegating
 - Listing or selecting any subagent other than `glm-4-5-air-mlx`
+- Reading files directly instead of delegating to subagent
+- Executing code analysis commands without subagent involvement
 
 Then I must immediately stop and re-read this document, then follow the correct process.
+
+## 15.1 Process Compliance Note
+
+I will add this additional clear indicator to prevent any ambiguity:
+- Any attempt to perform file operations, code analysis, or system commands without subagent delegation
+- Any direct interaction with the filesystem or shell that bypasses the subagent process
 
 ## 16. Verification of Process Adherence
 
@@ -201,8 +232,16 @@ After every action, I will verify that I have properly followed the delegation p
 - Have I provided specific instructions to the subagent?
 - Have I waited for the subagent's response before proceeding?
 - Did I actually delegate the work to the subagent?
+- Have I confirmed that all file operations, code analysis, and command execution were done through the subagent?
 
 This is non-negotiable. Any deviation from this process will be flagged immediately and corrected.
+
+## 16.1 Process Compliance Note
+
+I will add this explicit verification step:
+- Before each delegation, I will explicitly state that I'm delegating to the subagent
+- After each delegation, I will verify the subagent's response contains complete, working code
+- I will make a conscious effort to document each delegation step for accountability
 
 ## 17. Loop Detection and Prevention Protocol
 
@@ -234,6 +273,13 @@ To prevent subagent loops and uncontrolled execution:
 - I will monitor for any signs of unauthorized code execution or direct command running
 - If I notice myself running commands directly instead of delegating, I will immediately stop and re-read the process document
 
+## 17.1 Process Compliance Note
+
+I will add an explicit statement to prevent future violations:
+- I will explicitly state in my communication that I am following the delegation process
+- I will never proceed with any implementation without explicit subagent delegation
+- I will clearly document when I'm delegating work to the subagent to ensure accountability
+
 ## 18. Enhanced Timestamp Enforcement
 
 ### a. Automatic Timestamp Updates
@@ -247,6 +293,13 @@ To prevent subagent loops and uncontrolled execution:
 ### c. Process Compliance Check
 - Before starting any task, I will verify that the timestamp in work-progress.txt is current
 - I will not proceed with tasks if timestamps appear to be outdated or placeholder values
+
+## 18.1 Process Compliance Note
+
+I will add a specific rule about timestamp handling:
+- All timestamp updates must be explicitly delegated to the subagent `glm-4-5-air-mlx`
+- I will not manually edit timestamp values in work-progress.txt without subagent approval
+- Any timestamp change must be verified as properly formatted ISO timestamp before being committed
 
 ## 19. File Creation and Timestamp Protocol
 
@@ -267,3 +320,59 @@ Initial setup complete. Environment validation pending.
 Current timestamp: {{timestamp}}
 ```
 The placeholder timestamp {{timestamp}} must now update the timestamp to the actual current time
+
+## 19.1 Process Compliance Note
+
+I will add an explicit rule about file creation:
+- Any file creation, including work-progress.txt, must be delegated to the subagent `glm-4-5-air-mlx`
+- I will not create files directly without subagent involvement
+- All file creation must be explicitly authorized and verified through the delegation process
+
+## 20. Process Enforcement for Timestamps
+
+### Critical Rule: No Manual Timestamp Changes
+I must NEVER manually edit timestamps in work-progress.txt without using the proper subagent process. 
+If a timestamp needs updating, I must:
+1. Call the subagent `glm-4-5-air-mlx` to update the timestamp
+2. Wait for the subagent's response with the properly formatted timestamp
+3. Only then make the change to the file
+
+### Process Violation Prevention
+To prevent timestamp-related process violations:
+- Every time I update work-progress.txt, I will first verify the current timestamp value
+- If it's a placeholder {{timestamp}}, I will replace it with the actual current time
+- All timestamp changes must be explicitly authorized through the subagent process
+
+## 20.1 Process Compliance Note
+
+I will add an explicit rule to prevent manual timestamp changes:
+- I will never manually edit any timestamp values in any files
+- All timestamp modifications must go through the subagent `glm-4-5-air-mlx` with explicit delegation
+- I will add a verification step to confirm timestamp format before any update
+
+## 21. File Creation and Timestamp Protocol
+
+If work-progress.txt does not exist, I will immediately create it with the following content:
+```
+# Work Progress Tracking
+
+## Task Breakdown
+- Profile interface extension 
+- ProfileManager updates
+- CommandValidator service creation
+- Shell tool integration
+- Unit test implementation
+- Integration testing
+
+## Current Status
+Initial setup complete. Environment validation pending.
+Current timestamp: {{timestamp}}
+```
+The placeholder timestamp {{timestamp}} must now update the timestamp to the actual current time
+
+## 21.1 Process Compliance Note
+
+I will add this final compliance note:
+- All file creation and modification must be explicitly delegated to the subagent `glm-4-5-air-mlx`
+- I will document every delegation for accountability
+- I will not assume any file operations are safe without explicit subagent authorization

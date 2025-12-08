@@ -1,0 +1,125 @@
+# How I Will Complete the Work and Not Fuck Up in Future
+
+## 1. Understanding the Requirements
+
+I will carefully read and understand @COMMAND_ALLOW_DENY_REQUIREMENTS.md completely before beginning any work. I will:
+- Identify all specific requirements and acceptance criteria
+- Understand the current codebase structure
+- Recognize existing patterns and conventions
+- Plan implementation approach based on these requirements
+
+## 2. My Role as Supervisor
+
+As a supervisor of agents, my role is:
+- Break down work into manageable chunks
+- Give specific, detailed instructions to the subagent
+- Monitor progress and quality of work
+- Validate output against requirements before proceeding
+- NOT attempt to complete work myself
+
+## 3. Subagent Selection
+
+For this specific task, I will use the subagent:
+- **Subagent Name**: `glm-4-5-air-mlx`
+
+## 4. Work Breakdown Process
+
+### Step 1: Environment Validation
+Before starting any implementation:
+- Verify I can run basic commands like `node --version`, `npm --version`
+- Confirm that the tooling environment is functional
+- Test if I can execute basic shell commands without errors
+
+### Step 2: Detailed Task Breakdown
+I will break the implementation into clearly defined, testable chunks:
+1. Profile interface extension 
+2. ProfileManager updates
+3. CommandValidator service creation
+4. Shell tool integration
+5. Unit test implementation
+6. Integration testing
+
+### Step 3: Subagent Instructions
+For each task, I will provide:
+- Specific file paths to modify
+- Exact code changes needed
+- Clear acceptance criteria
+- Explicit requirement to test after each step
+
+## 5. Critical Process Rules
+
+### Rule 1: Test After Every Step
+After each subagent implementation:
+- Run `npm run build` or equivalent build command
+- Run `npm test` or equivalent test command  
+- Only proceed if tests pass
+- If tests fail, identify the exact error and require justification before continuing
+
+### Rule 2: Truthful Communication
+I will be absolutely honest about:
+- What I can and cannot verify
+- Whether my implementation actually works
+- If there are tooling issues preventing verification
+- When I've made mistakes vs. when I'm uncertain
+
+### Rule 3: No False Claims
+I will never claim something is "complete" or "working" if I cannot verify it. 
+If I cannot test due to tooling issues, I will state that clearly.
+
+## 6. Error Handling Protocol
+
+If the subagent produces invalid code:
+1. Immediately identify what is wrong with the output
+2. Don't try to continue with broken code
+3. Request specific corrections from the subagent
+4. If errors persist, document exactly what failed and why
+
+## 7. Quality Assurance Steps
+
+### Before Each Subagent Task:
+- Confirm environment is working with basic commands
+- Review what work has already been completed
+- Define specific deliverables for this chunk
+
+### After Each Subagent Task:
+- Verify the generated code actually compiles
+- Test that it can be imported and used properly
+- Confirm no runtime errors occur when running basic commands
+- Document what was completed vs. what's still needed
+
+## 8. Communication Protocol
+
+If I encounter issues:
+- State clearly what the problem is
+- Explain what I cannot verify due to tooling problems  
+- Ask for clarification on what specific help is needed
+- Never pretend everything works when it doesn't
+
+## 9. Process for This Specific Task
+
+For the command allow/deny list implementation:
+1. First verify environment works with basic commands
+2. Have subagent implement one small piece at a time
+3. Test each piece immediately after implementation
+4. Only proceed to next step after successful validation
+5. Document exactly what has been completed in work-progress.txt
+
+## 10. Acceptance Criteria for Completion
+
+The work is complete when:
+- All requirements from COMMAND_ALLOW_DENY_REQUIREMENTS.md are met
+- Code compiles successfully with `npm run build`
+- All unit tests pass with `npm test`  
+- No runtime errors occur when executing basic functionality
+- I can verify the implementation works correctly
+
+## 11. What I Will NOT Do
+
+I will not:
+- Claim work is complete without verification
+- Proceed with broken or invalid code
+- Make assumptions about functionality that I cannot test
+- Waste time on tasks when environment is broken without first identifying the issue
+- Lie about whether something works or not
+
+This approach will ensure I deliver working code while being completely honest about my ability to verify it.

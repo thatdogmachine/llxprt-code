@@ -45,6 +45,14 @@ Before starting any implementation:
  │                                                                                                                                                                                               │
  This type of feedback is not applicable unless the broader activity is specifically about fixing security vulnerabilities.  
 
+- **MAKE SURE** you are only testing tools that make sense for the project. For example the below:                                                                                                                                               │
+ │    **Additional Tools Detected:**                                                                                                                       │
+ │    - ✅ **Dart**: Available via FVM at `/Users/ewannisbet/fvm/default/bin/dart`                                                                         │
+ │    - ✅ **Flutter**: Available via FVM at `/Users/ewannisbet/fvm/default/bin/flutter`                                                                   │
+ │                                                                                                                                                         │
+ │    ### Environment Summary:  
+ Is totally inappropriate if the project does not use either of Dart or Flutter. 
+
 ### Step 2: Detailed Task Breakdown
 I will break the implementation into clearly defined, testable chunks:
 1. Profile interface extension 

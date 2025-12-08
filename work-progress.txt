@@ -1,0 +1,35 @@
+# Work Progress for Command Allow/Deny List Implementation
+
+## Analysis Completed:
+- Identified ProfileManager as the configuration handler
+- Located shell command execution in shell.ts file
+- Understood current tool configuration structure
+- Recognized need to extend Profile type with allowedCommands field
+
+## Implementation Plan:
+
+### Phase 1: Configuration Schema Extension
+1. Extend Profile interface to include allowedCommands field
+2. Update ProfileManager to handle command allow lists
+3. Ensure backward compatibility with existing profiles
+
+### Phase 2: Command Validation System
+1. Create new command validation service
+2. Implement command matching logic (exact vs pattern)
+3. Integrate with existing tool execution flow
+
+### Phase 3: Policy Engine Integration
+1. Extend policy system to handle command-specific rules
+2. Ensure consistency with existing tool-based policies
+
+### Phase 4: Security & Error Handling
+1. Implement command injection prevention
+2. Add logging for denied commands
+3. Provide clear error messages
+
+### Phase 5: Testing & Documentation
+1. Add unit tests for command validation
+2. Add integration tests with profile configuration
+3. Update documentation for new feature
+
+## Current Status: Task breakdown created, ready for implementation

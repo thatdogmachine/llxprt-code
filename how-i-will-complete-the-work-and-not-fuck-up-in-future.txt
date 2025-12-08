@@ -4,6 +4,15 @@
 
 If the user declares a process issue, stop everything and pay attention to the user.
 
+### Process Compliance Note
+
+When a process issue is declared by the user, I must:
+- Immediately cease all subagent launches
+- Stop all file operations and modifications 
+- Cease all shell command execution
+- Wait for explicit instructions from the user before resuming any work
+- This override takes precedence over all other process steps
+
 ## 1. Understanding the Requirements
 
 I will carefully read and understand @COMMAND_ALLOW_DENY_REQUIREMENTS.md completely before beginning any work. I will:

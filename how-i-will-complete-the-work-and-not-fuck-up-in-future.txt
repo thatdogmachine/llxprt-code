@@ -316,7 +316,7 @@ I will add a specific rule about timestamp handling:
 
 ## 19. File Creation and Timestamp Protocol
 
-If work-progress.txt does not exist, I will immediately create it with the following content:
+If work-progress.txt does not exist, I will delegate to subagent `glm-4-5-air-mlx` to create it with the following content:
 ```
 # Work Progress Tracking
 
@@ -332,7 +332,8 @@ If work-progress.txt does not exist, I will immediately create it with the follo
 Initial setup complete. Environment validation pending.
 Current timestamp: {{timestamp}}
 ```
-The placeholder timestamp {{timestamp}} must now update the timestamp to the actual current time
+
+The subagent will create the file with proper formatting and ensure the {{timestamp}} placeholder is correctly handled according to delegation protocol.
 
 ## 19.1 Process Compliance Note
 
@@ -346,6 +347,21 @@ I will add an explicit rule about file creation:
 ### Critical Rule: No Manual Timestamp Changes
 I must NEVER manually edit timestamps in work-progress.txt without using the proper subagent process. 
 If a timestamp needs updating, I must:
+## 21. Subagent File Creation Protocol (New Section)
+
+When creating work-progress.txt for the first time:
+1. Call subagent `glm-4-5-air-mlx` with specific instructions to create the file
+2. Provide the exact content including {{timestamp}} placeholder as requested in original requirements
+3. The subagent will create the file with proper formatting and handle any placeholder replacement according to delegation protocol
+4. The subagent will ensure all timestamps in the file follow proper ISO format when updated
+
+## 22. Initial State and Placeholder Handling (New Section)
+
+When work-progress.txt does not exist:
+1. The initial content must include the {{timestamp}} placeholder as specified in requirements
+2. This placeholder is an expected state that will be handled by subagent delegation
+3. The subagent will properly process and replace any placeholders according to the established protocols
+4. No manual file operations are performed for initial creation or placeholder handling
 1. Call the subagent `glm-4-5-air-mlx` to update the timestamp
 2. Wait for the subagent's response with the properly formatted timestamp
 3. Only then make the change to the file
@@ -353,7 +369,7 @@ If a timestamp needs updating, I must:
 ### Process Violation Prevention
 To prevent timestamp-related process violations:
 - Every time I update work-progress.txt, I will first verify the current timestamp value
-- If it's a placeholder {{timestamp}}, I will replace it with the actual current time
+- If it's a placeholder {{timestamp}}, I will delegate to subagent `glm-4-5-air-mlx` to replace it with actual current time
 - All timestamp changes must be explicitly authorized through the subagent process
 
 ## 20.1 Process Compliance Note
@@ -361,6 +377,13 @@ To prevent timestamp-related process violations:
 I will add an explicit rule to prevent manual timestamp changes:
 - I will never manually edit any timestamp values in any files
 - All timestamp modifications must go through the subagent `glm-4-5-air-mlx` with explicit delegation
+## 23. Enhanced Subagent Delegation Protocol (New Section)
+
+For all file operations including work-progress.txt:
+1. All file creation, modification, and timestamp handling must be performed through subagent delegation
+2. The subagent `glm-4-5-air-mlx` must handle all file system operations for work-progress.txt
+3. This ensures consistency with the delegation requirements and prevents any direct file system manipulation
+4. The subagent will properly generate actual timestamps in ISO 8601 format when replacing placeholders
 - I will add a verification step to confirm timestamp format before any update
 
 ## 21. File Creation and Timestamp Protocol

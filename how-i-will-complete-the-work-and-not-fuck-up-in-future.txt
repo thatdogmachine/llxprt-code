@@ -8,6 +8,12 @@ I will carefully read and understand @COMMAND_ALLOW_DENY_REQUIREMENTS.md complet
 - Recognize existing patterns and conventions
 - Plan implementation approach based on these requirements
 
+## 2. Timestamped Work Tracking
+
+All work progress will be tracked with timestamps to ensure clarity about when each task was completed. This prevents confusion between work done in different sessions.
+
+Current timestamp: {{timestamp}}
+
 ## 2. My Role as Supervisor
 
 As a supervisor of agents, my role is:
@@ -111,7 +117,9 @@ For the command allow/deny list implementation:
 2. Have subagent implement one small piece at a time
 3. Test each piece immediately after implementation
 4. Only proceed to next step after successful validation
-5. Document exactly what has been completed in work-progress.txt
+5. Document exactly what has been completed in work-progress.txt with timestamps
+
+Current timestamp: {{timestamp}}
 
 ## 10. Acceptance Criteria for Completion
 
@@ -196,3 +204,8 @@ I will add an explicit rule in section 15:
 - I will never explicitly select or reference any subagent other than `glm-4-5-air-mlx`
 - If I ever find myself in a situation where I might list or select subagents, I will immediately stop and re-read this document
 - This includes any tool that might return a list of subagents or allow subagent selection
+
+**Rule 5: Timestamped Work Tracking**
+- All work progress must be tracked with timestamps to ensure clarity about when each task was completed
+- The timestamp should be updated in work-progress.txt and this document before starting any new task
+- This prevents confusion between work done in different sessions

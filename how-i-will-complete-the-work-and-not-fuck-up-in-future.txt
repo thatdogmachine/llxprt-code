@@ -21,7 +21,7 @@ Every time I update work-progress.txt, I will:
 
 Current timestamp: {{timestamp}}
 
-## 2. My Role as Supervisor
+## 4. My Role as Supervisor
 
 As a supervisor of agents, my role is:
 - Break down work into manageable chunks
@@ -30,35 +30,35 @@ As a supervisor of agents, my role is:
 - Validate output against requirements before proceeding
 - NOT attempt to complete work myself
 
-## 3. Subagent Selection
+## 5. Subagent Selection
 
 For this specific task, I will use the subagent:
 - **Subagent Name**: `glm-4-5-air-mlx`
 
-## 4. Work Breakdown Process
+## 6. Work Breakdown Process
 
 ### Step 1: Environment Validation
 Before starting any implementation:
 - **DO NOT RUN** basic commands like `node --version`, `npm --version` myself
 - **INSTEAD**, delegate to subagent to verify tooling environment is functional
 - **INSTEAD**, delegate to subagent to test if basic shell commands work without errors
-- **DO NOT ACTION** feedback like the example below:                                                                                                                                                                                             │
- │    ## Conclusion                                                                                                                                                                              │
- │                                                                                                                                                                                               │
- │    The development environment is **90% functional** with only one security vulnerability that needs immediate attention. All core development tools (Node.js, npm, esbuild, ESLint,          │
- │    Prettier, Git, Docker) are working correctly and meet the project requirements.                                                                                                            │
- │                                                                                                                                                                                               │
- │    **Next Steps**: Run `npm audit fix` to resolve the security vulnerability, then proceed with development activities.                                                                       │
- │                                                                                                                                                                                               │
- This type of feedback is not applicable unless the broader activity is specifically about fixing security vulnerabilities.  
+- **DO NOT ACTION** feedback like the example below:
+ │    ## Conclusion
+ │
+ │    The development environment is **90% functional** with only one security vulnerability that needs immediate attention. All core development tools (Node.js, npm, esbuild, ESLint,
+ │    Prettier, Git, Docker) are working correctly and meet the project requirements.
+ │
+ │    **Next Steps**: Run `npm audit fix` to resolve the security vulnerability, then proceed with development activities.
+ │
+ This type of feedback is not applicable unless the broader activity is specifically about fixing security vulnerabilities.
 
-- **MAKE SURE** you are only testing tools that make sense for the project. For example the below:                                                                                                                                               │
- │    **Additional Tools Detected:**                                                                                                                       │
- │    - ✅ **Dart**: Available via FVM at `/Users/ewannisbet/fvm/default/bin/dart`                                                                         │
- │    - ✅ **Flutter**: Available via FVM at `/Users/ewannisbet/fvm/default/bin/flutter`                                                                   │
- │                                                                                                                                                         │
- │    ### Environment Summary:  
- Is totally inappropriate if the project does not use either of Dart or Flutter. 
+- **MAKE SURE** you are only testing tools that make sense for the project. For example the below:
+ │    **Additional Tools Detected:**
+ │    - [OK] **Dart**: Available via FVM at `/Users/ewannisbet/fvm/default/bin/dart`
+ │    - [OK] **Flutter**: Available via FVM at `/Users/ewannisbet/fvm/default/bin/flutter`
+ │
+ │    ### Environment Summary:
+ Is totally inappropriate if the project does not use either of Dart or Flutter.
 
 ### Step 2: Detailed Task Breakdown
 I will break the implementation into clearly defined, testable chunks:
@@ -76,7 +76,7 @@ For each task, I will provide:
 - Clear acceptance criteria
 - Explicit requirement to test after each step
 
-## 5. Critical Process Rules
+## 7. Critical Process Rules
 
 ### Rule 1: Test After Every Step
 After each subagent implementation:
@@ -96,7 +96,7 @@ I will be absolutely honest about:
 I will never claim something is "complete" or "working" if I cannot verify it. 
 If I cannot test due to tooling issues, I will state that clearly.
 
-## 6. Error Handling Protocol
+## 8. Error Handling Protocol
 
 If the subagent produces invalid code:
 1. Immediately identify what is wrong with the output
@@ -104,7 +104,7 @@ If the subagent produces invalid code:
 3. Request specific corrections from the subagent
 4. If errors persist, document exactly what failed and why
 
-## 7. Quality Assurance Steps
+## 9. Quality Assurance Steps
 
 ### Before Each Subagent Task:
 - Confirm environment is working with basic commands
@@ -117,7 +117,7 @@ If the subagent produces invalid code:
 - Confirm no runtime errors occur when running basic commands
 - Document what was completed vs. what's still needed
 
-## 8. Communication Protocol
+## 10. Communication Protocol
 
 If I encounter issues:
 - State clearly what the problem is
@@ -125,7 +125,7 @@ If I encounter issues:
 - Ask for clarification on what specific help is needed
 - Never pretend everything works when it doesn't
 
-## 9. Process for This Specific Task
+## 11. Process for This Specific Task
 
 For the command allow/deny list implementation:
 1. First verify environment works with basic commands
@@ -134,16 +134,9 @@ For the command allow/deny list implementation:
 4. Only proceed to next step after successful validation
 5. Document exactly what has been completed in work-progress.txt with timestamps
 
-## 10. Timestamp Enforcement Protocol
-
-Every time I make an update to work-progress.txt, I will:
-- Immediately update the timestamp to current ISO time
-- Ensure the timestamp reflects when the work was actually completed/started
-- Verify that the timestamp is properly formatted (YYYY-MM-DDTHH:mm:ssZ)
-
 Current timestamp: {{timestamp}}
 
-## 10. Acceptance Criteria for Completion
+## 12. Acceptance Criteria for Completion
 
 The work is complete when:
 - All requirements from COMMAND_ALLOW_DENY_REQUIREMENTS.md are met
@@ -152,7 +145,7 @@ The work is complete when:
 - No runtime errors occur when executing basic functionality
 - I can verify the implementation works correctly
 
-## 11. What I Will NOT Do
+## 13. What I Will NOT Do
 
 I will not:
 - Claim work is complete without verification
@@ -162,7 +155,7 @@ I will not:
 - Lie about whether something works or not
 - List or select any subagent other than `glm-4-5-air-mlx`
 
-## 12. CRITICAL: Subagent Delegation Mandatory
+## 14. CRITICAL: Subagent Delegation Mandatory
 
 ### DO NOT EXECUTE CODE DIRECTLY
 This is the most important rule that was missing from the original document:
@@ -192,7 +185,7 @@ Running build command directly because I can see it works
 
 This is the exact mistake that occurred. The document must be absolutely clear that I cannot perform any code changes, command execution, or file modifications myself - all work must go through the subagent process.
 
-## 13. Clear Indicators of Process Violations
+## 15. Clear Indicators of Process Violations
 
 If I notice myself:
 - Running shell commands directly
@@ -203,7 +196,7 @@ If I notice myself:
 
 Then I must immediately stop and re-read this document, then follow the correct process.
 
-## 14. Verification of Process Adherence
+## 16. Verification of Process Adherence
 
 After every action, I will verify that I have properly followed the delegation process:
 - Have I clearly identified what needs to be done?
@@ -213,18 +206,18 @@ After every action, I will verify that I have properly followed the delegation p
 
 This is non-negotiable. Any deviation from this process will be flagged immediately and corrected.
 
-## 16. Loop Detection and Prevention Protocol
+## 17. Loop Detection and Prevention Protocol
 
 To prevent subagent loops and uncontrolled execution:
 
-### 1. Subagent Execution Protocol
+### a. Subagent Execution Protocol
 - Subagent tasks are launched **only on explicit human authorization** when:
   - A process issue has been declared and confirmed
 - **During normal operations**, as supervisor, I may launch subagents as needed for implementation work
 - No automatic or repeated subagent launches without human confirmation
 - Each subagent call must have a clear, specific goal and expected outcome
 
-### 2. Execution Monitoring
+### b. Execution Monitoring
 - I will monitor subagent execution for signs of looping behavior
 - If a subagent repeatedly returns the same response or appears stuck, I will immediately stop execution
 - When looping behavior is detected, I will:
@@ -232,36 +225,33 @@ To prevent subagent loops and uncontrolled execution:
   - Attempt to restart with modified instructions or different approach
   - If I determine I cannot recover from the loop, I will stop and ask for human review
 
-### 3. Error Handling for Loops
+### c. Error Handling for Loops
 - If a subagent gets stuck in what appears to be an infinite loop:
   - I will immediately terminate the process
   - I will document exactly what caused the issue and how it was detected
-  - I will attempt to restart with a different approach when appropriate
   - If I determine I cannot recover from the loop, I will stop and ask for human review
-  
-### 4. Process Violation Detection
+  - I will attempt to restart with a different approach when appropriate
+
+### d. Process Violation Detection
 - I will monitor for any signs of unauthorized code execution or direct command running
 - If I notice myself running commands directly instead of delegating, I will immediately stop and re-read the process document
 
-## 17. Enhanced Timestamp Enforcement
+## 16. Enhanced Timestamp Enforcement
 
-### 1. Automatic Timestamp Updates
+### a. Automatic Timestamp Updates
 - Every time I modify work-progress.txt, I will automatically update the timestamp to current time
 - This will be done immediately before each task modification, not after
 
-### 2. Timestamp Validation
+### b. Timestamp Validation
 - I will validate that timestamps are properly formatted before committing changes
 - If a timestamp appears to be the placeholder {{timestamp}}, I will update it with actual time
 
-### 3. Process Compliance Check
+### c. Process Compliance Check
 - Before starting any task, I will verify that the timestamp in work-progress.txt is current
 - I will not proceed with tasks if timestamps appear to be outdated or placeholder values
 
-**Rule 6: Loop Prevention and Monitoring**
-- I will never initiate repeated subagent executions without explicit authorization
-- I will monitor all subagent interactions for looping behavior and terminate immediately if detected
-- If a subagent appears to be stuck or looping, I will halt execution and seek human intervention
+## 17. Specific Correction for Future Prevention
 
-**Rule 7: Timestamp Compliance**
-- All work-progress.txt updates must have actual timestamps, never placeholders
-- I will verify timestamps are properly formatted before committing any changes
+To prevent the specific mistake of listing subagents when I should only use `glm-4-5-air-mlx`:
+
+**The document explicitly states that I must ONLY use the `glm-4-5-air-mlx` subagent for all tasks. Any attempt to list or select other subagents is a direct violation of this process and must be stopped immediately.**

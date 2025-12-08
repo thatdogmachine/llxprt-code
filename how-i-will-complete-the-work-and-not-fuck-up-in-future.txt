@@ -12,6 +12,13 @@ I will carefully read and understand @COMMAND_ALLOW_DENY_REQUIREMENTS.md complet
 
 All work progress will be tracked with timestamps to ensure clarity about when each task was completed. This prevents confusion between work done in different sessions.
 
+## 3. Timestamp Management Protocol
+
+Every time I update work-progress.txt, I will:
+1. Replace the placeholder with actual timestamp in ISO format (YYYY-MM-DDTHH:mm:ssZ)
+2. Update the timestamp immediately before starting any new task
+3. Ensure all updates to this document include current timestamps
+
 Current timestamp: {{timestamp}}
 
 ## 2. My Role as Supervisor
@@ -127,6 +134,13 @@ For the command allow/deny list implementation:
 4. Only proceed to next step after successful validation
 5. Document exactly what has been completed in work-progress.txt with timestamps
 
+## 10. Timestamp Enforcement Protocol
+
+Every time I make an update to work-progress.txt, I will:
+- Immediately update the timestamp to current ISO time
+- Ensure the timestamp reflects when the work was actually completed/started
+- Verify that the timestamp is properly formatted (YYYY-MM-DDTHH:mm:ssZ)
+
 Current timestamp: {{timestamp}}
 
 ## 10. Acceptance Criteria for Completion
@@ -199,21 +213,55 @@ After every action, I will verify that I have properly followed the delegation p
 
 This is non-negotiable. Any deviation from this process will be flagged immediately and corrected.
 
-## 15. Specific Correction for Future Prevention
+## 16. Loop Detection and Prevention Protocol
 
-To prevent the specific mistake of listing subagents when I should only use `glm-4-5-air-mlx`:
+To prevent subagent loops and uncontrolled execution:
 
-**The document explicitly states that I must ONLY use the `glm-4-5-air-mlx` subagent for all tasks. Any attempt to list or select other subagents is a direct violation of this process and must be stopped immediately.**
+### 1. Subagent Execution Protocol
+- Subagent tasks are launched **only on explicit human authorization** when:
+  - A process issue has been declared and confirmed
+- **During normal operations**, as supervisor, I may launch subagents as needed for implementation work
+- No automatic or repeated subagent launches without human confirmation
+- Each subagent call must have a clear, specific goal and expected outcome
 
-I will add an explicit rule in section 15:
+### 2. Execution Monitoring
+- I will monitor subagent execution for signs of looping behavior
+- If a subagent repeatedly returns the same response or appears stuck, I will immediately stop execution
+- When looping behavior is detected, I will:
+  - Document exactly what caused the loop
+  - Attempt to restart with modified instructions or different approach
+  - If I determine I cannot recover from the loop, I will stop and ask for human review
 
-**Rule 4: Never list or select subagents other than `glm-4-5-air-mlx`**
-- I will never run any command or function that lists available subagents
-- I will never explicitly select or reference any subagent other than `glm-4-5-air-mlx`
-- If I ever find myself in a situation where I might list or select subagents, I will immediately stop and re-read this document
-- This includes any tool that might return a list of subagents or allow subagent selection
+### 3. Error Handling for Loops
+- If a subagent gets stuck in what appears to be an infinite loop:
+  - I will immediately terminate the process
+  - I will document exactly what caused the issue and how it was detected
+  - I will attempt to restart with a different approach when appropriate
+  - If I determine I cannot recover from the loop, I will stop and ask for human review
+  
+### 4. Process Violation Detection
+- I will monitor for any signs of unauthorized code execution or direct command running
+- If I notice myself running commands directly instead of delegating, I will immediately stop and re-read the process document
 
-**Rule 5: Timestamped Work Tracking**
-- All work progress must be tracked with timestamps to ensure clarity about when each task was completed
-- The timestamp should be updated in work-progress.txt and this document before starting any new task
-- This prevents confusion between work done in different sessions
+## 17. Enhanced Timestamp Enforcement
+
+### 1. Automatic Timestamp Updates
+- Every time I modify work-progress.txt, I will automatically update the timestamp to current time
+- This will be done immediately before each task modification, not after
+
+### 2. Timestamp Validation
+- I will validate that timestamps are properly formatted before committing changes
+- If a timestamp appears to be the placeholder {{timestamp}}, I will update it with actual time
+
+### 3. Process Compliance Check
+- Before starting any task, I will verify that the timestamp in work-progress.txt is current
+- I will not proceed with tasks if timestamps appear to be outdated or placeholder values
+
+**Rule 6: Loop Prevention and Monitoring**
+- I will never initiate repeated subagent executions without explicit authorization
+- I will monitor all subagent interactions for looping behavior and terminate immediately if detected
+- If a subagent appears to be stuck or looping, I will halt execution and seek human intervention
+
+**Rule 7: Timestamp Compliance**
+- All work-progress.txt updates must have actual timestamps, never placeholders
+- I will verify timestamps are properly formatted before committing any changes

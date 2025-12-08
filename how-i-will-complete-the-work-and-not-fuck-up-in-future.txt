@@ -121,6 +121,7 @@ I will not:
 - Make assumptions about functionality that I cannot test
 - Waste time on tasks when environment is broken without first identifying the issue
 - Lie about whether something works or not
+- List or select any subagent other than `glm-4-5-air-mlx`
 
 ## 12. CRITICAL: Subagent Delegation Mandatory
 
@@ -159,6 +160,7 @@ If I notice myself:
 - Writing code directly to files
 - Making changes to the codebase without subagent involvement
 - Testing functionality myself instead of delegating
+- Listing or selecting any subagent other than `glm-4-5-air-mlx`
 
 Then I must immediately stop and re-read this document, then follow the correct process.
 
@@ -171,3 +173,17 @@ After every action, I will verify that I have properly followed the delegation p
 - Did I actually delegate the work to the subagent?
 
 This is non-negotiable. Any deviation from this process will be flagged immediately and corrected.
+
+## 15. Specific Correction for Future Prevention
+
+To prevent the specific mistake of listing subagents when I should only use `glm-4-5-air-mlx`:
+
+**The document explicitly states that I must ONLY use the `glm-4-5-air-mlx` subagent for all tasks. Any attempt to list or select other subagents is a direct violation of this process and must be stopped immediately.**
+
+I will add an explicit rule in section 15:
+
+**Rule 4: Never list or select subagents other than `glm-4-5-air-mlx`**
+- I will never run any command or function that lists available subagents
+- I will never explicitly select or reference any subagent other than `glm-4-5-air-mlx`
+- If I ever find myself in a situation where I might list or select subagents, I will immediately stop and re-read this document
+- This includes any tool that might return a list of subagents or allow subagent selection

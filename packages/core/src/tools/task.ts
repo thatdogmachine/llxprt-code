@@ -356,17 +356,15 @@ class TaskToolInvocation extends BaseToolInvocation<
         },
       };
     } catch (error) {
-      const result = this.createErrorResult(
-        error,
-        `Subagent '${this.normalized.subagentName}' failed during execution.`,
-        agentId,
-      );
       await teardown();
       taskLogger.warn(
         () =>
-          `Subagent '${launchRequest.name}' execution error: ${result.error?.message ?? 'unknown'}`,
+          `Subagent '${launchRequest.name}' execution failed with a critical error: ${error instanceof Error ? error.message : String(error)}`,
       );
-      return result;
+      // Re-throw the error to ensure the entire tool execution fails.
+      // This signals a process-level failure to the Supervisor,
+      // allowing the Golden Rule to be invoked.
+      throw error;
     }
   }
 

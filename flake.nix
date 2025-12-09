@@ -26,7 +26,7 @@
           '';
           llxpert-logging-script = pkgs.writeShellScriptBin "llxpert-local" ''
             #!/bin/sh
-            node /Users/$(whoami)/repos/llxprt-code/packages/cli \
+            node /Users/$(whoami)/repos/logging-cli \
               --include-directories ~/repos/llxprt-code \
               "$@"
           '';

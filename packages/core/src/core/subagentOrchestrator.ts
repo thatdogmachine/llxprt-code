@@ -58,6 +58,7 @@ export interface SubagentLaunchRequest {
   behaviourPrompts?: string[];
   toolConfig?: ToolConfig;
   outputConfig?: OutputConfig;
+  antiLoopingMandate?: string;
 }
 
 export interface SubagentLaunchResult {
@@ -124,6 +125,7 @@ export class SubagentOrchestrator {
     const promptConfig = this.buildPromptConfig(
       subagent.systemPrompt,
       request.behaviourPrompts,
+      request.antiLoopingMandate,
     );
     const modelConfig = this.buildModelConfig(profile);
     const runConfig = this.buildRunConfig(profile, request.runConfig);
@@ -227,7 +229,8 @@ export class SubagentOrchestrator {
 
   private buildPromptConfig(
     basePrompt: string,
-    additions?: string[],
+    additions: string[] | undefined,
+    antiLoopingMandate: string | undefined,
   ): PromptConfig {
     const trimmedBase = basePrompt?.trim();
     const trimmedAdditions = (additions ?? [])
@@ -235,6 +238,10 @@ export class SubagentOrchestrator {
       .filter((part) => part && part.length > 0);
 
     const promptSections: string[] = [];
+
+    if (antiLoopingMandate) {
+      promptSections.push(antiLoopingMandate);
+    }
 
     if (trimmedBase) {
       promptSections.push(trimmedBase);

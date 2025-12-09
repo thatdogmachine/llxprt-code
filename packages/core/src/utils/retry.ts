@@ -29,7 +29,7 @@ export interface RetryOptions {
 
 const DEFAULT_RETRY_OPTIONS: RetryOptions = {
   maxAttempts: 5,
-  initialDelayMs: 5000,
+  initialDelayMs: 10000,
   maxDelayMs: 30000, // 30 seconds
   shouldRetryOnError: defaultShouldRetry,
 };
@@ -444,6 +444,7 @@ function getDelayDurationAndStatus(error: unknown): {
  * @param error The error that caused the retry.
  * @param errorStatus The HTTP status code of the error, if available.
  */
+/*
 function logRetryAttempt(
   attempt: number,
   error: unknown,
@@ -477,6 +478,22 @@ function logRetryAttempt(
   } else {
     logger.debug(() => `${message} Error: ${error}`); // Default to debug if error type is unknown
   }
+}
+*/
+function logRetryAttempt(
+  attempt: number,
+  error: unknown,
+  errorStatus?: number,
+): void {
+  const logger = new DebugLogger('llxprt:retry');
+  let message = `Attempt ${attempt} failed. Retrying with backoff...`;
+  if (errorStatus) {
+    message = `Attempt ${attempt} failed with status ${errorStatus}. Retrying with backoff...`;
+  }
+
+  // Using console.warn to make the retry attempts visible to the user.
+  console.warn(`${message} Error: ${error}`);
+  logger.debug(() => `${message} Error: ${error}`);
 }
 
 // @plan marker: PLAN-20250909-TOKTRACK.P05

@@ -18,7 +18,13 @@
       devShells = forAllSystems (system:
         let
           pkgs = nixpkgsFor.${system};
-          llxpert-script = pkgs.writeShellScriptBin "llxpert-local" ''
+          llxpert-script = pkgs.writeShellScriptBin "llxpert-logging" ''
+            #!/bin/sh
+            node /Users/$(whoami)/repos/llxprt-code/packages/cli \
+              --include-directories ~/repos/llxprt-code \
+              "$@"
+          '';
+          llxpert-logging-script = pkgs.writeShellScriptBin "llxpert-local" ''
             #!/bin/sh
             node /Users/$(whoami)/repos/llxprt-code/packages/cli \
               --include-directories ~/repos/llxprt-code \
@@ -30,6 +36,7 @@
             packages = [
               pkgs.direnv
               pkgs.nodejs_22
+              llxpert-logging-script
               llxpert-script
               pkgs.zsh
             ];
@@ -41,6 +48,7 @@
                 exec $SHELL
               fi
               echo "The 'llxpert-local' command is now available."
+              echo "The 'llxpert-logging' command is now available."
             '';
           };
         });

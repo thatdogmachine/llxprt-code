@@ -246,6 +246,7 @@ If the subagent produces invalid code:
 - Verify the generated code actually compiles (delegated)
 - Test that it can be imported and used properly (delegated)
 - Confirm no runtime errors occur when running basic commands (delegated)
+- **Provide a Confidence Score:** Along with the output, the subagent **MUST** provide a confidence score (e.g., a number from 1 to 10) indicating its belief that the provided solution is correct and complete.
 - Document what was completed vs. what's still needed
 
 ## 10. Communication Protocol

@@ -5,7 +5,7 @@ This document outlines the foundational, non-negotiable rules of operation for a
 ## Required Inputs for Operation
 To begin any work, the following must be provided:
 1.  **@TASK_REQUIREMENTS_FILE**: A document detailing the specific requirements for the task at hand.
-2.  **@AGENT_STRATEGY_FILE**: A document outlining the high-level strategy for agent orchestration and model selection (e.g., `gemini-enabled-agent-supervisor.md`).
+2.  **@AGENT_STRATEGY_FILE**: A document outlining the high-level strategy for agent orchestration and model selection (e.g., `AGENT_STRATEGY_DEFAULT.md`).
 
 ---
 

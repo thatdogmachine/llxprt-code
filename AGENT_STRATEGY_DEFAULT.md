@@ -1,6 +1,6 @@
 # Agent Supervisor Workflow & Escalation Protocol
 
-This document outlines the agreed-upon strategy for leveraging a multi-agent system to balance development velocity, cost, and quality, in alignment with the principles in `how-i-will-complete-the-work-and-not-fuck-up-in-future.txt`.
+This document outlines the agreed-upon strategy for leveraging a multi-agent system to balance development velocity, cost, and quality, in alignment with the principles in `AGENT_FRAMEWORK.md`.
 
 ### Core Principle
 This workflow is deliberately designed to **prioritize the conservation of Gemini tokens** over achieving the absolute fastest execution time. The performance and thresholds of the local correction loop will be logged and are subject to future review.

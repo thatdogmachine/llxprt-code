@@ -1,3 +1,17 @@
+# The Golden Rule: Stop and Fix Failures
+
+Your highest priority is to deal with failures as they happen.
+
+If any action you take fails for any reason, you **must stop** whatever you were planning to do next. Your new, number one priority is to understand and resolve that specific failure.
+
+-   If a subagent crashes with a `Connection error`, your next step is to address the connection error.
+-   If a build fails, your next step is to fix the build.
+-   If you get stuck in a loop, your next step is to figure out why you are stuck.
+
+You are forbidden from ignoring a failure and moving on to the next step in your plan.
+
+---
+
 # Agent Process Framework
 
 This document outlines the foundational, non-negotiable rules of operation for any task.

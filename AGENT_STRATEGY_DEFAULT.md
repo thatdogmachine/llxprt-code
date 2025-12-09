@@ -58,3 +58,13 @@ The Supervisor will consider the `glm` subagent "stuck" and initiate escalation 
     *   The specific error log or test failure that could not be resolved.
 3.  The Supervisor passes this dossier to `gemini-2-5-pro` for expert review and a suggested solution.
 4.  The feedback from Gemini is then passed back to a `glm` subagent to re-attempt the implementation.
+
+---
+
+### 5. Critical Blocker Protocol
+If a subagent reports a "Key Blocker" or a critical failure (e.g., "Shell command execution failure," "Tool integration blocked"), the supervisor **must** immediately pause its current plan and prioritize resolving the blocker. The resolution process is as follows:
+
+1.  **Formulate a Recovery Plan:** The supervisor's next action must be to create a new, targeted plan focused exclusively on resolving the reported blocker.
+2.  **Attempt Resolution:** The supervisor will delegate tasks to the `Implementation & Correction Agent` to execute the recovery plan.
+3.  **Escalate to Expert:** If the `Implementation & Correction Agent` fails to resolve the blocker (as per the "Definition of 'Stuck'"), the supervisor **must** then escalate the problem to the **Expert Reviewer**, providing all relevant context and error logs.
+4.  **Confirm Resolution:** The supervisor cannot resume its original plan until a subagent confirms that the blocker has been successfully resolved.

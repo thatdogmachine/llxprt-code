@@ -360,7 +360,7 @@ This simplifies verification and avoids circular dependency issues.
 
 ### b. Execution Monitoring  
 - I will monitor subagent execution for signs of looping behavior
-- If a subagent repeatedly returns the same response or appears stuck, I will immediately stop execution
+- If a subagent returns the exact same response (e.g., "No matches found" or an identical error message) for **3 consecutive attempts**, this **must** be treated as a loop. The supervisor **must** immediately terminate the subagent's task.
 - When looping behavior is detected, I will:
   - Document exactly what caused the loop in work-progress.txt
   - Attempt to restart with modified instructions or different approach (if appropriate subagent available)

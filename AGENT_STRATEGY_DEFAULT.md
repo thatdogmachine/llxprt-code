@@ -12,8 +12,8 @@ This workflow is deliberately designed to **prioritize the conservation of Gemin
 *   **Supervisor:** `glm-4.5-air-mlx`
     *   **Responsibility:** Manages the overall process, breaks down tasks, delegates to subagents, detects loops/stalls, and manages the escalation path. Does not write or review implementation code itself.
 
-*   **Draft Coder:** `qwen3-coder-30b`
-    *   **Responsibility:** Provides an initial, rapid generation of code for a given task.
+*   **Draft Coder:** `glm-4.5-air-mlx`
+    *   **Responsibility:** Provides an initial, rapid generation of code for a given task. To conserve host memory and avoid the time cost of loading/unloading different models, the same model is used for both drafting and implementation.
 
 *   **Implementation & Correction Agent:** `glm-4.5-air-mlx` (Subagent)
     *   **Responsibility:** Receives draft code, performs validation (linting, syntax checks), and attempts to implement, test, and correct the code to meet requirements.
@@ -25,9 +25,9 @@ This workflow is deliberately designed to **prioritize the conservation of Gemin
 
 ### 2. Workflow & Local Correction Loop
 
-1.  **Task Delegation:** The Supervisor delegates a coding task to `qwen`.
-2.  **Implementation Attempt:** The Supervisor passes the `qwen`-generated code to a `glm` subagent.
-3.  **Validation & Correction:** The `glm` subagent first runs fail-fast checks (e.g., linting). It then enters a correction loop, attempting to integrate the code, run tests, and fix any errors it finds.
+1.  **Task Delegation:** The Supervisor delegates a coding task to the `Draft Coder`.
+2.  **Implementation Attempt:** The Supervisor passes the drafted code to the `Implementation & Correction Agent`.
+3.  **Validation & Correction:** The `Implementation & Correction Agent` first runs fail-fast checks (e.g., linting). It then enters a correction loop, attempting to integrate the code, run tests, and fix any errors it finds.
 
 ---
 
@@ -47,8 +47,8 @@ The Supervisor will consider the `glm` subagent "stuck" and initiate escalation 
 1.  When the "stuck" condition is met, the Supervisor compiles a "dossier" for Gemini.
 2.  This dossier **must** include:
     *   The original high-level requirement.
-    *   The initial code from `qwen`.
-    *   The final code attempt from the `glm` subagent.
+    *   The initial code from the `Draft Coder`.
+    *   The final code attempt from the `Implementation & Correction Agent`.
     *   The specific error log or test failure that could not be resolved.
 3.  The Supervisor passes this dossier to `gemini-2-5-pro` for expert review and a suggested solution.
 4.  The feedback from Gemini is then passed back to a `glm` subagent to re-attempt the implementation.

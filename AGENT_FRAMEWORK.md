@@ -372,6 +372,14 @@ This simplifies verification and avoids circular dependency issues.
   - Document exactly what caused the issue and how it was detected in work-progress.txt
   - If I cannot recover, document this and provide clear explanation to user
 
+### d. Subagent Task Timeout Protocol
+To prevent a single subagent from blocking all progress by looping or becoming unresponsive, every task delegated by the supervisor **must** be executed with a timeout.
+
+1.  **Default Timeout:** The default timeout for any subagent task is **5 minutes**.
+2.  **Termination on Timeout:** If a subagent fails to complete its task and return a result within the timeout period, the supervisor **must** terminate the task.
+3.  **Failure Logging:** Upon termination, the supervisor must log the task as `FAILED` with the reason "Subagent task timed out."
+4.  **Critical Blocker:** A timed-out task must be treated as a critical blocker, and the supervisor must then follow the **"Critical Blocker Protocol"**.
+
 ## 18. File Creation and Timestamp Protocol (STANDARDIZED)
 
 If work-progress.txt does not exist, I will create it directly with the following content:

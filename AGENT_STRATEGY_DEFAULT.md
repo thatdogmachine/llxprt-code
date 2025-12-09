@@ -7,6 +7,12 @@ This workflow is deliberately designed to **prioritize the conservation of Gemin
 
 ---
 
+### Situational Awareness Protocol
+
+Before beginning any task, the agent must establish situational awareness by running `git status` and `git diff HEAD`. This provides the ground truth of the codebase's current state, including any uncommitted changes, and prevents the agent from working with stale information from potentially outdated sources like `work-progress.txt`.
+
+---
+
 ### 1. Agent Roles
 
 *   **Supervisor:** `glm-4.5-air-mlx`

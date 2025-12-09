@@ -328,6 +328,23 @@ Running build command directly because I can see it works
 
 This is the exact mistake that occurred. The document must be absolutely clear that I cannot perform any code changes, command execution, or file modifications myself - all work must go through the subagent process, except for exempted compliance tracking activities.
 
+### Subagent Anti-Looping Mandate
+To empower subagents to be more resilient and prevent internal loops, the supervisor **must** prepend the following instructions to every task prompt delegated to a subagent:
+
+---
+
+> **Your Anti-Looping Instructions:**
+>
+> 1.  You **must** maintain a memory of your last 3 actions and their outcomes.
+> 2.  Before taking any new action, you **must** check if you are about to repeat an action that has failed in your recent history.
+> 3.  If you are about to attempt the exact same failed action for the **third consecutive time**, you are in a loop. A "failed action" is any action that results in an error, "not found," or does not advance the task.
+> 4.  If you detect such a loop, you **must not** attempt the action again. Instead, you must immediately exit, report a failure to the supervisor, and include the following information:
+>     *   The action you were stuck on.
+>     *   The reason it was failing (e.g., "No matches found").
+>     *   A suggestion for a different approach.
+
+---
+
 ## 15. Clear Indicators of Process Violations
 
 If I notice myself:

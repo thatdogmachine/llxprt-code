@@ -1,0 +1,70 @@
+# Agent Supervisor Workflow & Escalation Protocol
+
+This document outlines the agreed-upon strategy for leveraging a multi-agent system to balance development velocity, cost, and quality, in alignment with the principles in `AGENT_FRAMEWORK.md`.
+
+### Core Principle
+This workflow is deliberately designed to **prioritize the conservation of Gemini tokens** over achieving the absolute fastest execution time. The performance and thresholds of the local correction loop will be logged and are subject to future review.
+
+---
+
+### Situational Awareness Protocol
+
+Before beginning any task, the agent must establish situational awareness by running `git status` and `git diff HEAD`. This provides the ground truth of the codebase's current state, including any uncommitted changes, and prevents the agent from working with stale information from potentially outdated sources like `work-progress.txt`.
+
+---
+
+### 1. Agent Roles
+
+*   **Supervisor:** `glm-4.5-air-mlx`
+    *   **Responsibility:** Manages the overall process, breaks down tasks, delegates to subagents, detects loops/stalls, and manages the escalation path. Does not write or review implementation code itself.
+
+*   **Draft Coder:** `glm-4.5-air-mlx`
+    *   **Responsibility:** Provides an initial, rapid generation of code for a given task. To conserve host memory and avoid the time cost of loading/unloading different models, the same model is used for both drafting and implementation.
+
+*   **Implementation & Correction Agent:** `glm-4.5-air-mlx` (Subagent)
+    *   **Responsibility:** Receives draft code, performs validation (linting, syntax checks), and attempts to implement, test, and correct the code to meet requirements.
+
+*   **Expert Reviewer:** `gemini-2-5-pro`
+    *   **Responsibility:** Acts as a "last resort" expert, engaged only upon escalation from the Supervisor when local agents are confirmed to be stuck.
+
+---
+
+### 2. Workflow & Local Correction Loop
+
+1.  **Task Delegation:** The Supervisor delegates a coding task to the `Draft Coder`.
+2.  **Implementation Attempt:** The Supervisor passes the drafted code to the `Implementation & Correction Agent`.
+3.  **Validation & Correction:** The `Implementation & Correction Agent` first runs fail-fast checks (e.g., linting). It then enters a correction loop, attempting to integrate the code, run tests, and fix any errors it finds.
+
+---
+
+### 3. Definition of "Stuck" (Escalation Trigger)
+
+The Supervisor will consider the `glm` subagent "stuck" and initiate escalation to Gemini if the subagent reports failure after meeting one or more of the following conditions:
+
+*   **High Attempt Count:** The subagent fails to produce a valid, passing result after a specified number of iterations (initial setting: **10-15 attempts**). This process must be logged for later review and tuning.
+*   **Error Repetition:** The same build or test error occurs on consecutive attempts.
+*   **Stagnation:** The subagent's code modifications cease to show meaningful progress toward the goal.
+*   **Low Confidence:** The subagent consistently reports a low confidence score in its ability to solve the task.
+
+---
+
+### 4. Gemini Escalation Protocol
+
+1.  When the "stuck" condition is met, the Supervisor compiles a "dossier" for Gemini.
+2.  This dossier **must** include:
+    *   The original high-level requirement.
+    *   The initial code from the `Draft Coder`.
+    *   The final code attempt from the `Implementation & Correction Agent`.
+    *   The specific error log or test failure that could not be resolved.
+3.  The Supervisor passes this dossier to `gemini-2-5-pro` for expert review and a suggested solution.
+4.  The feedback from Gemini is then passed back to a `glm` subagent to re-attempt the implementation.
+
+---
+
+### 5. Critical Blocker Protocol
+If a subagent reports a "Key Blocker" or a critical failure (e.g., "Shell command execution failure," "Tool integration blocked"), the supervisor **must** immediately pause its current plan and prioritize resolving the blocker. The resolution process is as follows:
+
+1.  **Formulate a Recovery Plan:** The supervisor's next action must be to create a new, targeted plan focused exclusively on resolving the reported blocker.
+2.  **Attempt Resolution:** The supervisor will delegate tasks to the `Implementation & Correction Agent` to execute the recovery plan.
+3.  **Escalate to Expert:** If the `Implementation & Correction Agent` fails to resolve the blocker (as per the "Definition of 'Stuck'"), the supervisor **must** then escalate the problem to the **Expert Reviewer**, providing all relevant context and error logs.
+4.  **Confirm Resolution:** The supervisor cannot resume its original plan until a subagent confirms that the blocker has been successfully resolved.

@@ -26,7 +26,7 @@ export class TodoWrite extends BaseTool<TodoWriteParams, ToolResult> {
     super(
       TodoWrite.Name,
       'TodoWrite',
-      'Create and manage a structured task list for the current coding session. Updates the entire todo list.',
+      'Updates or overwrites the entire session todo list. The input MUST be a JSON object with a single key "todos", which contains the complete array of all todo objects. Example: {"todos": [{"id": "1", "content": "My Task", "status": "in_progress", "priority": "high"}]}',
       Kind.Think,
       {
         type: Type.OBJECT,
@@ -100,7 +100,8 @@ export class TodoWrite extends BaseTool<TodoWriteParams, ToolResult> {
               },
               required: ['id', 'content', 'status', 'priority'],
             },
-            description: 'The updated todo list',
+            description:
+              'An array of todo objects representing the ENTIRE new state of the list. The old list will be completely replaced by this new one.',
           },
         },
         required: ['todos'],

@@ -869,13 +869,16 @@ export const useGeminiStream = (
   );
 
   const handleLoopDetectedEvent = useCallback(() => {
+    const errorMessage = `A potential loop was detected. This can happen due to repetitive tool calls or other model behavior. The request has been halted.`;
     addItem(
       {
         type: 'info',
-        text: `A potential loop was detected. This can happen due to repetitive tool calls or other model behavior. The request has been halted.`,
+        text: errorMessage,
       },
       Date.now(),
     );
+    // Throw an error to ensure this is treated as a process failure.
+    throw new Error(errorMessage);
   }, [addItem]);
 
   const processGeminiStreamEvents = useCallback(

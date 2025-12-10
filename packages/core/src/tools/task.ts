@@ -135,8 +135,19 @@ class TaskToolInvocation extends BaseToolInvocation<
     const { subagentName, behaviourPrompts, toolWhitelist, outputSpec } =
       this.normalized;
 
+    const ANTI_LOOPING_MANDATE = `Your Anti-Looping Instructions:
+
+1.  You **must** maintain a memory of your last 3 actions and their outcomes.
+2.  Before taking any new action, you **must** check if you are about to repeat an action that has failed in your recent history.
+3.  If you are about to attempt the exact same failed action for the **third consecutive time**, you are in a loop. A "failed action" is any action that results in an error, "not found," or does not advance the task.
+4.  If you detect such a loop, you **must not** attempt the action again. Instead, you must immediately exit, report a failure to the Supervisor, and include the following information:
+    *   The action you were stuck on.
+    *   The reason it was failing (e.g., "No matches found").
+    *   A suggestion for a different approach.`;
+
     const launchRequest: SubagentLaunchRequest = {
       name: subagentName,
+      antiLoopingMandate: ANTI_LOOPING_MANDATE,
     };
 
     if (behaviourPrompts.length > 0) {
@@ -356,17 +367,15 @@ class TaskToolInvocation extends BaseToolInvocation<
         },
       };
     } catch (error) {
-      const result = this.createErrorResult(
-        error,
-        `Subagent '${this.normalized.subagentName}' failed during execution.`,
-        agentId,
-      );
       await teardown();
       taskLogger.warn(
         () =>
-          `Subagent '${launchRequest.name}' execution error: ${result.error?.message ?? 'unknown'}`,
+          `Subagent '${launchRequest.name}' execution failed with a critical error: ${error instanceof Error ? error.message : String(error)}`,
       );
-      return result;
+      // Re-throw the error to ensure the entire tool execution fails.
+      // This signals a process-level failure to the Supervisor,
+      // allowing the Golden Rule to be invoked.
+      throw error;
     }
   }
 
@@ -483,7 +492,7 @@ export class TaskTool extends BaseDeclarativeTool<TaskToolParams, ToolResult> {
           behaviour_prompts: {
             type: 'array',
             description:
-              'Additional behavioural prompts to append after the goal prompt.',
+              'An array of strings containing additional behavioural prompts. Must be an array even if there is only one prompt. Example: ["You must respond in JSON."]',
             items: { type: 'string' },
           },
           tool_whitelist: {

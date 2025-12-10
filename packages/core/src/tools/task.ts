@@ -492,7 +492,7 @@ export class TaskTool extends BaseDeclarativeTool<TaskToolParams, ToolResult> {
           behaviour_prompts: {
             type: 'array',
             description:
-              'Additional behavioural prompts to append after the goal prompt.',
+              'An array of strings containing additional behavioural prompts. Must be an array even if there is only one prompt. Example: ["You must respond in JSON."]',
             items: { type: 'string' },
           },
           tool_whitelist: {

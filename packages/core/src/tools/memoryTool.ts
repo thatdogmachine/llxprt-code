@@ -51,7 +51,7 @@ Use this tool:
 Do NOT use this tool:
 
 - To remember conversational context that is only relevant for the current session.
-- To log your progress on a task or to keep a short-term scratchpad. The project's designated progress tracking file or the `Todo` tools should be used for this.
+- To log your progress on a task or to keep a short-term scratchpad. The project's designated progress tracking file or the 'Todo' tools should be used for this.
 - To save long, complex, or rambling pieces of text. The fact should be relatively short and to the point.
 - If you are unsure whether the information is a fact worth remembering long-term. If in doubt, you can ask the user, "Should I remember that for you?"
 
